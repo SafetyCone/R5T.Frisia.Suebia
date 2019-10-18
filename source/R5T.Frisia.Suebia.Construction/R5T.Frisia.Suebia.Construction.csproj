@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\R5T.Dacia\source\R5T.Dacia\R5T.Dacia.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Jutland.Newtonsoft\source\R5T.Jutland.Newtonsoft\R5T.Jutland.Newtonsoft.csproj" />
     <ProjectReference Include="..\R5T.Frisia.Suebia\R5T.Frisia.Suebia.csproj" />
   </ItemGroup>
 
