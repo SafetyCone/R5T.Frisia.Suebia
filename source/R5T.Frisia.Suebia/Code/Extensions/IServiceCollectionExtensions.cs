@@ -86,7 +86,7 @@ namespace R5T.Frisia.Suebia
                 addAwsEc2ServerSecretsFileNameProvider,
                 addSecretsFilePathProvider,
                 addJsonFileSerializationOperator,
-                addAwsEc2ServerHostFriendlyNameProvider);
+                addAwsEc2ServerHostFriendlyNameProvider));
             return serviceAction;
         }
     }
