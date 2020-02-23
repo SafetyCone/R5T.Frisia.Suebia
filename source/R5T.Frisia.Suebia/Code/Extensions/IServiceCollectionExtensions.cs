@@ -58,14 +58,14 @@ namespace R5T.Frisia.Suebia
         /// </summary>
         public static IServiceCollection AddSuebiaAwsEc2ServerSecretsProvider(this IServiceCollection services,
             ServiceAction<IAwsEc2ServerSecretsFileNameProvider> addAwsEc2ServerSecretsFileNameProvider,
-            ServiceAction<ISecretsFilePathProvider> addSecretsFilePathProvider,
+            ServiceAction<ISecretsDirectoryFilePathProvider> addSecretsDirectoryFilePathProvider,
             ServiceAction<IJsonFileSerializationOperator> addJsonFileSerializationOperator,
             ServiceAction<IAwsEc2ServerHostFriendlyNameProvider> addAwsEc2ServerHostFriendlyNameProvider)
         {
             services
                 .AddSingleton<IAwsEc2ServerSecretsProvider, SuebiaAwsEc2ServerSecretsProvider>()
                 .RunServiceAction(addAwsEc2ServerSecretsFileNameProvider)
-                .RunServiceAction(addSecretsFilePathProvider)
+                .RunServiceAction(addSecretsDirectoryFilePathProvider)
                 .RunServiceAction(addJsonFileSerializationOperator)
                 .RunServiceAction(addAwsEc2ServerHostFriendlyNameProvider)
                 ;
@@ -78,13 +78,13 @@ namespace R5T.Frisia.Suebia
         /// </summary>
         public static ServiceAction<IAwsEc2ServerSecretsProvider> AddSuebiaAwsEc2ServerSecretsProviderAction(this IServiceCollection services,
             ServiceAction<IAwsEc2ServerSecretsFileNameProvider> addAwsEc2ServerSecretsFileNameProvider,
-            ServiceAction<ISecretsFilePathProvider> addSecretsFilePathProvider,
+            ServiceAction<ISecretsDirectoryFilePathProvider> addSecretsDirectoryFilePathProvider,
             ServiceAction<IJsonFileSerializationOperator> addJsonFileSerializationOperator,
             ServiceAction<IAwsEc2ServerHostFriendlyNameProvider> addAwsEc2ServerHostFriendlyNameProvider)
         {
             var serviceAction = new ServiceAction<IAwsEc2ServerSecretsProvider>(() => services.AddSuebiaAwsEc2ServerSecretsProvider(
                 addAwsEc2ServerSecretsFileNameProvider,
-                addSecretsFilePathProvider,
+                addSecretsDirectoryFilePathProvider,
                 addJsonFileSerializationOperator,
                 addAwsEc2ServerHostFriendlyNameProvider));
             return serviceAction;

@@ -8,24 +8,24 @@ using R5T.Suebia;
 namespace R5T.Frisia.Suebia
 {
     /// <summary>
-    /// Provides AWS EC2 server secrets from a secrets file using <see cref="R5T.Suebia.ISecretsFilePathProvider"/>.
+    /// Provides AWS EC2 server secrets from a secrets file using <see cref="R5T.Suebia.ISecretsDirectoryFilePathProvider"/>.
     /// </summary>
     public class SuebiaAwsEc2ServerSecretsProvider : IAwsEc2ServerSecretsProvider
     {
         public IAwsEc2ServerSecretsFileNameProvider AwsEc2ServerSecretsFileNameProvider { get; }
-        public ISecretsFilePathProvider SecretsFilePathProvider { get; }
+        public ISecretsDirectoryFilePathProvider SecretsDirectoryFilePathProvider { get; }
         public IJsonFileSerializationOperator JsonFileSerializationOperator { get; }
         public IAwsEc2ServerHostFriendlyNameProvider AwsEc2ServerHostFriendlyNameProvider { get; }
 
 
         public SuebiaAwsEc2ServerSecretsProvider(
             IAwsEc2ServerSecretsFileNameProvider awsEc2ServerSecretsFileNameProvider,
-            ISecretsFilePathProvider secretsFilePathProvider,
+            ISecretsDirectoryFilePathProvider secretsFilePathProvider,
             IJsonFileSerializationOperator jsonFileSerializationOperator,
             IAwsEc2ServerHostFriendlyNameProvider awsEc2ServerHostFriendlyNameProvider)
         {
             this.AwsEc2ServerSecretsFileNameProvider = awsEc2ServerSecretsFileNameProvider;
-            this.SecretsFilePathProvider = secretsFilePathProvider;
+            this.SecretsDirectoryFilePathProvider = secretsFilePathProvider;
             this.JsonFileSerializationOperator = jsonFileSerializationOperator;
             this.AwsEc2ServerHostFriendlyNameProvider = awsEc2ServerHostFriendlyNameProvider;
         }
@@ -34,7 +34,7 @@ namespace R5T.Frisia.Suebia
         {
             var awsEc2ServerSecretsFileName = this.AwsEc2ServerSecretsFileNameProvider.GetAwsEc2ServerSecretsFileName();
 
-            var awsEc2ServerSecretsFilePath = this.SecretsFilePathProvider.GetSecretsFilePath(awsEc2ServerSecretsFileName);
+            var awsEc2ServerSecretsFilePath = this.SecretsDirectoryFilePathProvider.GetSecretsFilePath(awsEc2ServerSecretsFileName);
 
             var serverSecretsSerialization = this.JsonFileSerializationOperator.Deserialize<AwsEc2ServerSecretsSerialization>(awsEc2ServerSecretsFilePath);
 
