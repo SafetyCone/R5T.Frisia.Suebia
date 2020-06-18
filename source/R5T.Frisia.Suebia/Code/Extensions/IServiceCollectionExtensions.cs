@@ -24,7 +24,7 @@ namespace R5T.Frisia.Suebia
         /// <summary>
         /// Adds the <see cref="HardCodedAwsEc2ServerSecretsFileNameProvider"/> implementation of <see cref="IAwsEc2ServerSecretsFileNameProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
-        public static ServiceAction<IAwsEc2ServerSecretsFileNameProvider> AddHardCodedAwsEc2ServerSecretsFileNameProviderAction(this IServiceCollection services)
+        public static IServiceAction<IAwsEc2ServerSecretsFileNameProvider> AddHardCodedAwsEc2ServerSecretsFileNameProviderAction(this IServiceCollection services)
         {
             var serviceAction = new ServiceAction<IAwsEc2ServerSecretsFileNameProvider>(() => services.AddHardCodedAwsEc2ServerSecretsFileNameProvider());
             return serviceAction;
@@ -47,7 +47,7 @@ namespace R5T.Frisia.Suebia
         /// <summary>
         /// Adds the <see cref="InstanceAwsEc2ServerHostFriendlyNameProvider"/> implementation of <see cref="IAwsEc2ServerHostFriendlyNameProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
-        public static ServiceAction<IAwsEc2ServerHostFriendlyNameProvider> AddInstanceAwsEc2ServerHostFriendlyNameProviderAction(this IServiceCollection services, string hostFriendlyName)
+        public static IServiceAction<IAwsEc2ServerHostFriendlyNameProvider> AddInstanceAwsEc2ServerHostFriendlyNameProviderAction(this IServiceCollection services, string hostFriendlyName)
         {
             var serviceAction = new ServiceAction<IAwsEc2ServerHostFriendlyNameProvider>(() => services.AddInstanceAwsEc2ServerHostFriendlyNameProvider(hostFriendlyName));
             return serviceAction;
@@ -57,10 +57,10 @@ namespace R5T.Frisia.Suebia
         /// Adds the <see cref="SuebiaAwsEc2ServerSecretsProvider"/> implementation of <see cref="IAwsEc2ServerSecretsProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
         public static IServiceCollection AddSuebiaAwsEc2ServerSecretsProvider(this IServiceCollection services,
-            ServiceAction<IAwsEc2ServerSecretsFileNameProvider> addAwsEc2ServerSecretsFileNameProvider,
-            ServiceAction<ISecretsDirectoryFilePathProvider> addSecretsDirectoryFilePathProvider,
-            ServiceAction<IJsonFileSerializationOperator> addJsonFileSerializationOperator,
-            ServiceAction<IAwsEc2ServerHostFriendlyNameProvider> addAwsEc2ServerHostFriendlyNameProvider)
+            IServiceAction<IAwsEc2ServerSecretsFileNameProvider> addAwsEc2ServerSecretsFileNameProvider,
+            IServiceAction<ISecretsDirectoryFilePathProvider> addSecretsDirectoryFilePathProvider,
+            IServiceAction<IJsonFileSerializationOperator> addJsonFileSerializationOperator,
+            IServiceAction<IAwsEc2ServerHostFriendlyNameProvider> addAwsEc2ServerHostFriendlyNameProvider)
         {
             services
                 .AddSingleton<IAwsEc2ServerSecretsProvider, SuebiaAwsEc2ServerSecretsProvider>()
@@ -76,11 +76,11 @@ namespace R5T.Frisia.Suebia
         /// <summary>
         /// Adds the <see cref="SuebiaAwsEc2ServerSecretsProvider"/> implementation of <see cref="IAwsEc2ServerSecretsProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
-        public static ServiceAction<IAwsEc2ServerSecretsProvider> AddSuebiaAwsEc2ServerSecretsProviderAction(this IServiceCollection services,
-            ServiceAction<IAwsEc2ServerSecretsFileNameProvider> addAwsEc2ServerSecretsFileNameProvider,
-            ServiceAction<ISecretsDirectoryFilePathProvider> addSecretsDirectoryFilePathProvider,
-            ServiceAction<IJsonFileSerializationOperator> addJsonFileSerializationOperator,
-            ServiceAction<IAwsEc2ServerHostFriendlyNameProvider> addAwsEc2ServerHostFriendlyNameProvider)
+        public static IServiceAction<IAwsEc2ServerSecretsProvider> AddSuebiaAwsEc2ServerSecretsProviderAction(this IServiceCollection services,
+            IServiceAction<IAwsEc2ServerSecretsFileNameProvider> addAwsEc2ServerSecretsFileNameProvider,
+            IServiceAction<ISecretsDirectoryFilePathProvider> addSecretsDirectoryFilePathProvider,
+            IServiceAction<IJsonFileSerializationOperator> addJsonFileSerializationOperator,
+            IServiceAction<IAwsEc2ServerHostFriendlyNameProvider> addAwsEc2ServerHostFriendlyNameProvider)
         {
             var serviceAction = new ServiceAction<IAwsEc2ServerSecretsProvider>(() => services.AddSuebiaAwsEc2ServerSecretsProvider(
                 addAwsEc2ServerSecretsFileNameProvider,
