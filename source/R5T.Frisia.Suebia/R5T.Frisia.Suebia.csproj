@@ -10,5 +10,6 @@
     <ProjectReference Include="..\..\..\R5T.Jutland.Base\source\R5T.Jutland.Base\R5T.Jutland.Base.csproj" />
     <ProjectReference Include="..\..\..\R5T.Suebia.Base\source\R5T.Suebia.Base\R5T.Suebia.Base.csproj" />
     <ProjectReference Include="..\..\..\R5T.T0062\source\R5T.T0062.X001\R5T.T0062.X001.csproj" />
+    <ProjectReference Include="..\..\..\R5T.T0064\source\R5T.T0064.T001\R5T.T0064.T001.csproj" />
   </ItemGroup>
 </Project>
